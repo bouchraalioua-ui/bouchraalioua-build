@@ -4,7 +4,7 @@ import { RESUME } from "./media-1";
 import { VOICE_A } from "./media-2";
 import { VOICE_B } from "./media-3";
 import { PH_HEAD, PH_PENT, PH_UCLA } from "./media-4";
-import { PH_PLOT } from "./media-5";
+import { PH_PLOT, PH_SF } from "./media-5";
 const VOICE = VOICE_A + VOICE_B;
 export const markup = String.raw`
 <div class="guides" aria-hidden="true"></div>
@@ -106,7 +106,7 @@ export const markup = String.raw`
         <div class="mode"><div class="seg" id="tmode"><button class="on" data-m="listen">Listen</button><button data-m="read">Read</button></div></div>
         <div class="transcript" id="transcript"></div>
         <audio id="vo" preload="auto" src="${VOICE}"></audio>
-        <div id="photos" hidden><img data-k="ucla" src="${PH_UCLA}" alt=""/><img data-k="pent" src="${PH_PENT}" alt=""/><img data-k="plot" src="${PH_PLOT}" alt=""/></div>
+        <div id="photos" hidden><img data-k="ucla" src="${PH_UCLA}" alt=""/><img data-k="pent" src="${PH_PENT}" alt=""/><img data-k="plot" src="${PH_PLOT}" alt=""/><img data-k="sf" src="${PH_SF}" alt=""/></div>
       </div>
     </div>
   </div>
@@ -126,15 +126,15 @@ export const markup = String.raw`
   </div></div>
 
   <div class="sec" id="w-map"><div class="wrap">
-    <p class="kicker">Every stop so far</p>
-    <div class="jm-card"><svg class="jm-map" viewBox="0 0 760 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <p class="kicker">Every stop so far · hover or tap a stop</p>
+    <div class="jm-card" id="jmcard"><svg class="jm-map" viewBox="0 0 760 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
 <defs><pattern id="jm-dg" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" class="jm-gd"/></pattern></defs>
 <rect width="760" height="560" fill="url(#jm-dg)"/><path d="M0,409.2 L0.0,409.2 L79.2,420.0 L158.3,409.2 L237.5,430.8 L285.0,473.8 L324.6,516.9 L356.3,549.2 L364.2,560.0 L0,560 Z" class="jm-sea"/><polyline points="0.0,0.0 0.0,409.2 79.2,420.0 158.3,409.2 237.5,430.8 285.0,473.8 324.6,516.9 356.3,549.2 364.2,560.0" class="jm-coast"/>
 <text x="40" y="465" class="jm-ocean">PACIFIC OCEAN</text>
 <path d="M117.2,124.9 Q348.5,354.2 672.9,383.4 Q572.0,179.2 364.2,86.2 Q321.2,217.9 372.1,346.8 Q474.5,372.7 570.0,327.4 Q568.4,269.7 530.4,226.2" class="jm-route" pathLength="1"/>
 <path d="M530.4,214.2 C550.4,106.19999999999999 650.4,66.19999999999999 680.4,18" class="jm-next"/>
 <text x="736" y="30" text-anchor="end" class="jm-sf">↑ 7 · Hopefully, the Bay Area</text>
-<g class="jm-stop" style="--d:0.3s"><circle cx="117.2" cy="124.9" r="12" class="jm-halo"/><text x="117.2" y="128.9" text-anchor="middle" class="jm-num">1</text><text x="135.2" y="123.9" text-anchor="start" class="jm-org">Kaiser Permanente</text><text x="135.2" y="139.9" text-anchor="start" class="jm-meta">Nov 2023 · Woodland Hills</text></g><g class="jm-stop" style="--d:0.6499999999999999s"><circle cx="672.9" cy="383.4" r="12" class="jm-halo"/><text x="672.9" y="387.4" text-anchor="middle" class="jm-num">2</text><text x="654.9" y="407.4" text-anchor="end" class="jm-org">Intl. Rescue Committee</text><text x="654.9" y="423.4" text-anchor="end" class="jm-meta">Aug 2024 · Los Angeles</text></g><g class="jm-stop" style="--d:1.0s"><circle cx="364.2" cy="86.2" r="12" class="jm-halo"/><text x="364.2" y="90.2" text-anchor="middle" class="jm-num">3</text><text x="382.2" y="85.2" text-anchor="start" class="jm-org">SFV Mental Health Center</text><text x="382.2" y="101.2" text-anchor="start" class="jm-meta">Sep 2024 · San Fernando Valley</text></g><g class="jm-stop" style="--d:1.3499999999999999s"><circle cx="372.1" cy="346.8" r="12" class="jm-halo"/><text x="372.1" y="350.8" text-anchor="middle" class="jm-num">4</text><text x="354.1" y="345.8" text-anchor="end" class="jm-org">UCLA</text><text x="354.1" y="361.8" text-anchor="end" class="jm-meta">Sep 2025 · Westwood</text></g><g class="jm-stop" style="--d:1.7s"><circle cx="570.0" cy="327.4" r="12" class="jm-halo"/><text x="570.0" y="331.4" text-anchor="middle" class="jm-num">5</text><text x="588.0" y="343.4" text-anchor="start" class="jm-org">Paramount · CBS Studios</text><text x="588.0" y="359.4" text-anchor="start" class="jm-meta">Jun 2026 · Hollywood</text></g><g class="jm-stop" style="--d:2.05s"><circle cx="530.4" cy="226.2" r="12" class="jm-halo"/><text x="530.4" y="230.2" text-anchor="middle" class="jm-num">6</text><text x="548.4" y="208.2" text-anchor="start" class="jm-org">NBCUniversal</text><text x="548.4" y="224.2" text-anchor="start" class="jm-meta">Oct 2026 · Hollywood</text></g></svg></div>
+<g class="jm-stop" data-i="0" tabindex="0" role="button" aria-label="Stop 1 details" style="--d:0.3s"><circle cx="117.2" cy="124.9" r="12" class="jm-halo"/><text x="117.2" y="128.9" text-anchor="middle" class="jm-num">1</text><text x="135.2" y="123.9" text-anchor="start" class="jm-org">Kaiser Permanente</text><text x="135.2" y="139.9" text-anchor="start" class="jm-meta">Nov 2023 · Woodland Hills</text></g><g class="jm-stop" data-i="1" tabindex="0" role="button" aria-label="Stop 2 details" style="--d:0.6499999999999999s"><circle cx="672.9" cy="383.4" r="12" class="jm-halo"/><text x="672.9" y="387.4" text-anchor="middle" class="jm-num">2</text><text x="654.9" y="407.4" text-anchor="end" class="jm-org">Intl. Rescue Committee</text><text x="654.9" y="423.4" text-anchor="end" class="jm-meta">Aug 2024 · Los Angeles</text></g><g class="jm-stop" data-i="2" tabindex="0" role="button" aria-label="Stop 3 details" style="--d:1.0s"><circle cx="364.2" cy="86.2" r="12" class="jm-halo"/><text x="364.2" y="90.2" text-anchor="middle" class="jm-num">3</text><text x="382.2" y="85.2" text-anchor="start" class="jm-org">SFV Mental Health Center</text><text x="382.2" y="101.2" text-anchor="start" class="jm-meta">Sep 2024 · San Fernando Valley</text></g><g class="jm-stop" data-i="3" tabindex="0" role="button" aria-label="Stop 4 details" style="--d:1.3499999999999999s"><circle cx="372.1" cy="346.8" r="12" class="jm-halo"/><text x="372.1" y="350.8" text-anchor="middle" class="jm-num">4</text><text x="354.1" y="345.8" text-anchor="end" class="jm-org">UCLA</text><text x="354.1" y="361.8" text-anchor="end" class="jm-meta">Sep 2025 · Westwood</text></g><g class="jm-stop" data-i="4" tabindex="0" role="button" aria-label="Stop 5 details" style="--d:1.7s"><circle cx="570.0" cy="327.4" r="12" class="jm-halo"/><text x="570.0" y="331.4" text-anchor="middle" class="jm-num">5</text><text x="588.0" y="343.4" text-anchor="start" class="jm-org">Paramount · CBS Studios</text><text x="588.0" y="359.4" text-anchor="start" class="jm-meta">Jun 2026 · Hollywood</text></g><g class="jm-stop" data-i="5" tabindex="0" role="button" aria-label="Stop 6 details" style="--d:2.05s"><circle cx="530.4" cy="226.2" r="12" class="jm-halo"/><text x="530.4" y="230.2" text-anchor="middle" class="jm-num">6</text><text x="548.4" y="208.2" text-anchor="start" class="jm-org">NBCUniversal</text><text x="548.4" y="224.2" text-anchor="start" class="jm-meta">Oct 2026 · Hollywood</text></g></svg><div class="jm-tip" id="jmtip" hidden></div></div>
   </div></div>
   <a class="next wrap" href="#my-ships"><span class="kicker">Next</span><b>My ships <span>→</span></b></a>
 </section>
